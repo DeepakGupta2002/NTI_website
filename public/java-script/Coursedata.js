@@ -160,7 +160,7 @@ function fetchAndDisplayCourses() {
                 const courseImage = document.createElement('img');
                 courseImage.classList.add('course-image', 'w-100');
 
-                const cleanedImagePath = course.image.replace(/..[\\/]+public[\\/]+/, '');
+                const cleanedImagePath = course.image;//.replace(/..[\\/]+public[\\/]+/, '');
                 courseImage.src = `${cleanedImagePath}`;
                 courseImage.alt = course.name;
 

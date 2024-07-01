@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path"); // Added path module
+// const path = require("path"); // Added path module
 const Admin_pannel = express();
 
 require("dotenv/config");
@@ -14,7 +14,7 @@ Admin_pannel.post("/Admin-login", (req, res) => {
 
 
         if (req.body.username === username && req.body.password === password) {
-            const dashboardPath = path.join(__dirname, "..", "..", "public", "dashborad.html");
+            // const dashboardPath = path.join(__dirname, "..", "..", "public", "dashborad.html");
 
             res.json({ success: true, message: "Login successful" });
             console.log("Login successful");

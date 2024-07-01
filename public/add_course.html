@@ -39,6 +39,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Fetch courses from the API
             fetchCourses();
+
+            // Add event listener for form submission
+            document.getElementById('courseForm').addEventListener('submit', addCourse);
         });
 
         async function fetchCourses() {
@@ -92,7 +95,7 @@
 
                 const imageCell = document.createElement('td');
                 const image = document.createElement('img');
-                image.src = `http://localhost:3500/${course.image}`;
+                image.src = course.image//`http://localhost:3500/${course.image}`;
                 image.alt = course.name;
                 image.width = 100;
                 imageCell.appendChild(image);
@@ -118,6 +121,30 @@
             table.appendChild(tbody);
 
             contentDiv.appendChild(table);
+        }
+
+        async function addCourse(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('http://localhost:3500/api/addCourse', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Course added successfully');
+                    fetchCourses();
+                    form.reset();
+                } else {
+                    alert('Failed to add course');
+                }
+            } catch (error) {
+                console.error('Error adding course:', error);
+            }
         }
 
         function showUpdateForm(course) {
@@ -184,7 +211,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>

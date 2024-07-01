@@ -354,14 +354,13 @@
                 <p>Our internship program offers hands-on experience in the IT industry. Interns work on real-life
                     projects under the guidance of experienced mentors. Duration: 3 months. Eligibility: Final year
                     students or recent graduates with a passion for programming.</p>
-                <img src="/upload/image/Internship-Program.jpeg" class="img-fluid" alt="Internship Description Image">
+                <img src="/upload/image/Internship1.jpg" class="img-fluid" alt="Internship Description Image">
             </div>
             <div class="col-md-6">
                 <h3>Mentorship Support</h3>
                 <p>Each intern is assigned a dedicated mentor who provides guidance and support throughout the
                     internship. Weekly one-on-one sessions are conducted to track progress and provide feedback.</p>
-                <img src="/upload/image/Mentorship-shutterstock-1200x919.webp" class="img-fluid"
-                    alt="Mentorship Support Image">
+                <img src="/upload/image/mentor1.png" class="img-fluid" alt="Mentorship Support Image">
             </div>
         </div>
 
@@ -371,7 +370,7 @@
                 <p>Interns work on projects that have real-life applications. Projects include web development, mobile
                     app development, and software engineering. By working on these projects, interns gain practical
                     experience and develop industry-relevant skills.</p>
-                <img src="/upload/image/project-projects.jpg" class="img-fluid" alt="Real-Life Applications Image">
+                <img src="/upload/image/real-life-project.jpeg" class="img-fluid" alt="Real-Life Applications Image">
             </div>
             <div class="col-md-6">
                 <h3>Placement Guarantee</h3>
@@ -554,15 +553,16 @@
 
     <!-- end the contact as form -->
 
+    <script src="java-script/dropdown.js"></script>
 
 
     <!-- Footer -->
     <footer class="footer mt-5">
-        <div class="container">
+        <div class="container" id="contact">
             <div class="row">
                 <div class="col-md-3">
                     <h5>Company Logo</h5>
-                    <img src="/upload/image/NTI-logo.jpg" alt="Company Logo" class="img-fluid" id="NTI-logo">
+                    <img src="/upload/image/nti1-logo.jpg" alt="Company Logo" class="img-fluid" id="NTI-logo">
                 </div>
                 <div class="col-md-3">
                     <h5>Address <i class="fas fa-map-marker-alt"></i></h5>
@@ -832,6 +832,7 @@
 
         // Populate the dropdown list in the main section with courses
         const courseSelect = document.getElementById('courseSelect');
+        console.log(courseSelect);
         courses.forEach(course => {
             const option = document.createElement('option');
             option.text = course;

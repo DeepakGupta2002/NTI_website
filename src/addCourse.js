@@ -2,6 +2,8 @@ const express = require('express');
 const addCourse = express.Router();
 const multer = require("multer");
 const { courseModel } = require('./modal/courses_add');
+const cloudinary = require("cloudinary");
+const fs = require('fs'); // local file delete karne ke liye
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -17,15 +19,25 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 require("dotenv/config");
+cloudinary.config({
+    cloud_name: process.env.CLODINARY_CLOUD_NAME,
+    api_key: process.env.CLODINARY_API_KEY,
+    api_secret: process.env.CLODINARY_API_SECRET
+});
 
 // Add Course
 addCourse.post('/addCourse', upload.single('image'), async (req, res) => {
     try {
-        const { name, description } = req.body;
-        const image = req.file.path;
+        // Cloudinary pe image upload karte hain aur result ka wait karte hain
+        const result = await cloudinary.uploader.upload(req.file.path);
+        // Local file ko upload hone ke baad delete kar dete hain
 
+        const { name, description } = req.body;
+        const image = result.secure_url; // Cloudinary se secure URL use karte hain
+        console.log(image);
         const newCourse = new courseModel({ name, description, image });
         await newCourse.save();
+        fs.unlinkSync(req.file.path);
 
         res.status(201).json({
             message: "Course added successfully",
